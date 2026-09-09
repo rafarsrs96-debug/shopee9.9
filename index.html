@@ -116,7 +116,7 @@ function openProduct(id){
 }
 function closeModal(){document.getElementById('modalbg').style.display='none'}
 function outside(e){if(e.target.id==='modalbg')closeModal()}
-function goCheckout(){const p=products.find(x=>x.id===Number(document.getElementById('checkout').dataset.productId));if(!(p&&p.link)||!p.link){alert('Este produto ainda não tem um link de checkout da Cakto.');return false}return true}
+function goCheckout(){const p=products.find(x=>x.id===Number(document.getElementById('checkout').dataset.productId));const checkoutLink=(p&&p.link)||CAKTO_LINK;if(!checkoutLink){alert('Este produto ainda não tem um link de checkout da Cakto.');return false}window.location.href=checkoutLink;return false}
 function search(){
  const q=document.getElementById('search').value.toLowerCase().trim();
  current=!q?products.slice():products.filter(p=>(p.name+' '+p.spec+' '+p.cat).toLowerCase().includes(q));render(current)
